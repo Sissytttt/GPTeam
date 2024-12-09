@@ -429,8 +429,14 @@ class Agent(BaseModel):
         return response
 
     def _log(self, title: str, description: str = ""):
-        agent_logger.info(f"[{self.full_name}] [{self.color}] [{title}] {description}")
-        print_to_console(f"[{self.full_name}] {title}", self.color, description)
+        agent_logger.info(f"[{self.full_name}] [{self.color}] [{title}] {description}") # print to screen
+        print_to_console(f"[{self.full_name}] {title}", self.color, description) # print to console
+
+    def _logConsole(self, title: str, description: str = ""):
+        print_to_console(f"[{self.full_name}] {title}", self.color, description) # print to console
+
+    def _logWeb(self, title: str, description: str = ""):
+        agent_logger.info(f"[{self.full_name}] [{self.color}] [{title}] {description}") # print to screen
 
     async def _calculate_importance(self, memory_description: str) -> int:
         # Set up a complex chat model
